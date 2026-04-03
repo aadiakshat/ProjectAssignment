@@ -2,11 +2,11 @@
   "name": "finance-backend",
   "version": "1.0.0",
   "description": "Finance dashboard backend with role-based access control",
-  "main": "Server/src/server.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node Server/src/server.js",
-    "dev": "node --watch Server/src/server.js",
-    "seed": "node Server/src/seed.js"
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/seed.js"
   },
   "keywords": [],
   "author": "",
