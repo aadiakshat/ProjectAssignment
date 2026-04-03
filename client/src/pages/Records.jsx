@@ -15,7 +15,7 @@ export default function Records() {
   const [records, setRecords] = useState([]);
   const [pagination, setPagination] = useState({});
   const [loading, setLoading] = useState(true);
-  const [filters, setFilters] = useState({ type: "", category: "", page: 1 });
+  const [filters, setFilters] = useState({ type: "", category: "", startDate: "", endDate: "", page: 1 });
   const [modal, setModal] = useState(null);
   const [toast, setToast] = useState(null);
 
@@ -32,7 +32,7 @@ export default function Records() {
     }
   };
 
-  useEffect(() => { fetchRecords(); }, [filters.page, filters.type, filters.category]);
+  useEffect(() => { fetchRecords(); }, [filters.page, filters.type, filters.category, filters.startDate, filters.endDate]);
 
   const showToast = (msg, type = "success") => {
     setToast({ msg, type });
@@ -83,6 +83,25 @@ export default function Records() {
           <option value="">All Categories</option>
           {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
+        <input
+          type="date"
+          value={filters.startDate}
+          onChange={(e) => setFilters({ ...filters, startDate: e.target.value, page: 1 })}
+          title="From date"
+          placeholder="From"
+        />
+        <input
+          type="date"
+          value={filters.endDate}
+          onChange={(e) => setFilters({ ...filters, endDate: e.target.value, page: 1 })}
+          title="To date"
+          placeholder="To"
+        />
+        {(filters.startDate || filters.endDate) && (
+          <button className="btn btn-ghost btn-sm" onClick={() => setFilters({ ...filters, startDate: "", endDate: "", page: 1 })}>
+            Clear Dates
+          </button>
+        )}
         {isAdmin && (
           <button className="btn btn-primary ml-auto" onClick={() => setModal({ mode: "create", data: {} })}>
             + New Record
