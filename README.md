@@ -23,54 +23,56 @@ A full-stack finance dashboard application built with Node.js, Express, MongoDB,
 ```
 .
 ├── Server/
-│   └── src/
-│       ├── config/
-│       │   ├── db.js                  # MongoDB connection setup
-│       │   └── roles.js               # Role and permission definitions
-│       ├── controllers/
-│       │   ├── userController.js       # Auth and user management handlers
-│       │   ├── recordController.js     # Financial record CRUD handlers
-│       │   └── dashboardController.js  # Analytics endpoint handlers
-│       ├── middlewares/
-│       │   ├── authenticate.js         # JWT token verification
-│       │   ├── authorize.js            # Permission-based access checks
-│       │   ├── validate.js             # Request validation wrapper
-│       │   └── errorHandler.js         # Global error handler
-│       ├── models/
-│       │   ├── User.js                 # User schema with password hashing
-│       │   └── Record.js              # Financial record schema
-│       ├── routes/
-│       │   ├── userRoutes.js           # /api/users endpoints
-│       │   ├── recordRoutes.js         # /api/records endpoints
-│       │   └── dashboardRoutes.js      # /api/dashboard endpoints
-│       ├── services/
-│       │   ├── userService.js          # User business logic
-│       │   ├── recordService.js        # Record CRUD and filtering logic
-│       │   └── dashboardService.js     # Aggregation pipelines for analytics
-│       ├── validators/
-│       │   └── index.js                # Validation rules for all endpoints
-│       ├── seed.js                     # Database seeder with sample data
-│       └── server.js                   # Express app entry point
+│   ├── src/
+│   │   ├── config/
+│   │   │   ├── db.js                  # MongoDB connection setup
+│   │   │   └── roles.js               # Role and permission definitions
+│   │   ├── controllers/
+│   │   │   ├── userController.js       # Auth and user management handlers
+│   │   │   ├── recordController.js     # Financial record CRUD handlers
+│   │   │   └── dashboardController.js  # Analytics endpoint handlers
+│   │   ├── middlewares/
+│   │   │   ├── authenticate.js         # JWT token verification
+│   │   │   ├── authorize.js            # Permission-based access checks
+│   │   │   ├── validate.js             # Request validation wrapper
+│   │   │   └── errorHandler.js         # Global error handler
+│   │   ├── models/
+│   │   │   ├── User.js                 # User schema with password hashing
+│   │   │   └── Record.js              # Financial record schema
+│   │   ├── routes/
+│   │   │   ├── userRoutes.js           # /api/users endpoints
+│   │   │   ├── recordRoutes.js         # /api/records endpoints
+│   │   │   └── dashboardRoutes.js      # /api/dashboard endpoints
+│   │   ├── services/
+│   │   │   ├── userService.js          # User business logic
+│   │   │   ├── recordService.js        # Record CRUD and filtering logic
+│   │   │   └── dashboardService.js     # Aggregation pipelines for analytics
+│   │   ├── validators/
+│   │   │   └── index.js                # Validation rules for all endpoints
+│   │   ├── seed.js                     # Database seeder with sample data
+│   │   └── server.js                   # Express app entry point
+│   ├── .env                            # Environment variables
+│   ├── .gitignore
+│   └── package.json                    # Backend dependencies and scripts
 │
 ├── client/
-│   └── src/
-│       ├── components/
-│       │   └── Layout.jsx              # App shell with sidebar navigation
-│       ├── context/
-│       │   └── AuthContext.jsx          # Authentication state management
-│       ├── pages/
-│       │   ├── Login.jsx               # Login form
-│       │   ├── Dashboard.jsx           # Stats, charts, recent activity
-│       │   ├── Records.jsx             # Record table with CRUD and filters
-│       │   └── Users.jsx               # User management (admin only)
-│       ├── api.js                      # Centralized API client
-│       ├── App.jsx                     # Routing and protected routes
-│       ├── main.jsx                    # React entry point
-│       └── index.css                   # Design system and all styles
+│   ├── src/
+│   │   ├── components/
+│   │   │   └── Layout.jsx              # App shell with sidebar navigation
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx          # Authentication state management
+│   │   ├── pages/
+│   │   │   ├── Login.jsx               # Login form
+│   │   │   ├── Dashboard.jsx           # Stats, charts, recent activity
+│   │   │   ├── Records.jsx             # Record table with CRUD and filters
+│   │   │   └── Users.jsx               # User management (admin only)
+│   │   ├── api.js                      # Centralized API client
+│   │   ├── App.jsx                     # Routing and protected routes
+│   │   ├── main.jsx                    # React entry point
+│   │   └── index.css                   # Design system and all styles
+│   └── package.json                    # Frontend dependencies and scripts
 │
-├── .env                                # Environment variables
 ├── .gitignore
-├── package.json                        # Backend dependencies and scripts
 └── README.md
 ```
 
@@ -90,17 +92,17 @@ git clone <repo-url>
 cd assignment
 
 # Install backend dependencies
+cd Server
 npm install
 
 # Install frontend dependencies
-cd client
+cd ../client
 npm install
-cd ..
 ```
 
 ### 2. Configure environment variables
 
-Create a `.env` file in the project root:
+Create a `.env` file inside the `Server/` folder:
 
 ```env
 PORT=5000
@@ -112,6 +114,7 @@ JWT_EXPIRES_IN=7d
 ### 3. Seed the database
 
 ```bash
+cd Server
 npm run seed
 ```
 
@@ -123,6 +126,7 @@ Open two terminal windows:
 
 ```bash
 # Terminal 1 — Backend (port 5000)
+cd Server
 npm run dev
 
 # Terminal 2 — Frontend (port 5173)
